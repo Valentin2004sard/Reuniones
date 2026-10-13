@@ -1,0 +1,851 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Reunión Encargados</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   DOMA CRIOLLA · Reunión Encargados · Oct 2026
+   Brand: naranja #E8751A / crema cálida #F4E6CC / marrón #1A0E06
+   Font: Bebas Neue (display) + Barlow (body)
+   Desktop: horizontal slide-by-slide
+   Mobile ≤768px: vertical scroll
+   ============================================================ */
+:root {
+  --bg:         #F4E6CC;
+  --surface:    #EDD8B4;
+  --surface2:   #E2C898;
+  --fg:         #1A0E06;
+  --muted:      #7A5E38;
+  --accent:     #E8751A;
+  --accent2:    #D06010;
+  --red:        #C02020;
+  --green:      #1A7A3A;
+  --blue:       #1A55AA;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Barlow', system-ui, sans-serif;
+  font-size: 20px;
+}
+
+/* ── SHELL ── */
+.pres { width: 100vw; height: 100vh; position: relative; overflow: hidden; }
+
+/* ── SLIDE TRANSITIONS ── */
+.slide {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  padding: clamp(24px, 4vw, 60px) clamp(32px, 7vw, 110px) 90px;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity .4s ease, transform .4s ease;
+  pointer-events: none;
+}
+.slide.active  { opacity: 1; transform: translateX(0);   pointer-events: all; }
+.slide.leaving { opacity: 0; transform: translateX(-60px); pointer-events: none; }
+
+/* ══════════════════════════════════════════
+   SLIDE 0 · PORTADA
+══════════════════════════════════════════ */
+.s-portada {
+  background:
+    linear-gradient(160deg, rgba(232,117,26,.18) 0%, transparent 55%),
+    var(--bg);
+  text-align: center;
+  gap: 0;
+  border-top: 6px solid var(--accent);
+}
+
+.portada-brand {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+.portada-brand-dc {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+  background: var(--accent);
+  color: #0C0A08;
+  padding: 5px 16px 3px;
+  border-radius: 3px;
+  letter-spacing: .12em;
+}
+.portada-brand-name {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.9rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.portada-pretitle {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.portada-h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 18vw, 15rem);
+  line-height: .9;
+  color: var(--fg);
+  letter-spacing: .02em;
+}
+.portada-h1 span { color: var(--accent); display: block; }
+
+.portada-rule {
+  width: 64px; height: 4px;
+  background: var(--accent);
+  margin: clamp(24px, 3.5vh, 40px) auto;
+}
+
+.portada-date {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   SLIDE 1 · REALIDAD / CHART
+══════════════════════════════════════════ */
+.s-realidad { gap: 22px; }
+
+.slide-eyebrow {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.85rem, 1.4vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.slide-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 7.5vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: .03em;
+  text-align: center;
+}
+
+.chart-wrap {
+  width: 100%; max-width: 700px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.chart-bars {
+  display: flex; align-items: flex-end;
+  gap: clamp(16px, 3.5vw, 36px);
+  height: clamp(140px, 22vh, 210px);
+  border-bottom: 2px solid rgba(26,14,6,.15);
+  padding-inline: 4px;
+}
+.bar-col {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; height: 100%;
+}
+.bar-stats {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  margin-bottom: 10px;
+}
+.bar-pedidos {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+  letter-spacing: .04em;
+}
+.bar-products {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.75rem, 1.4vw, 1rem);
+  color: var(--muted);
+  font-weight: 500;
+}
+.bar-spacer { flex: 1; }
+.bar-fill {
+  width: 72%; border-radius: 4px 4px 0 0;
+  transform: scaleY(0); transform-origin: bottom center;
+  transition: transform .9s cubic-bezier(.34, 1.15, .64, 1);
+}
+.bar-fill.grow { transform: scaleY(1); }
+.bar-col:nth-child(1) .bar-fill { background: var(--blue);   height: 100%; transition-delay: .1s; }
+.bar-col:nth-child(2) .bar-fill { background: var(--accent); height: 85%;  transition-delay: .3s; }
+.bar-col:nth-child(3) .bar-fill { background: var(--red);    height: 71%;  transition-delay: .5s; }
+
+.chart-legend {
+  display: flex; gap: clamp(16px, 3.5vw, 36px);
+  padding: 14px 4px 0;
+}
+.chart-legend span {
+  flex: 1; text-align: center;
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.8rem, 1.4vw, 1rem);
+  color: var(--muted); font-weight: 500;
+}
+.chart-legend strong {
+  display: block; color: var(--fg);
+  font-family: 'Barlow', sans-serif; font-weight: 700;
+  font-size: clamp(.9rem, 1.5vw, 1.15rem);
+  margin-bottom: 2px;
+}
+
+.alert-box {
+  max-width: 620px; border-radius: 8px;
+  background: rgba(192,32,32,.08);
+  border: 2px solid rgba(192,32,32,.30);
+  padding: 18px 28px; text-align: center;
+}
+.alert-box strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  letter-spacing: .04em;
+  color: var(--red);
+}
+.alert-box p {
+  font-size: clamp(.85rem, 1.4vw, 1.05rem);
+  color: var(--muted); margin-top: 5px;
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════
+   SLIDES 2-5 · FOCOS
+══════════════════════════════════════════ */
+.s-focus {
+  align-items: flex-start;
+  border-left: 6px solid var(--accent);
+  padding-left: clamp(32px, 6vw, 88px);
+}
+
+.focus-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(6rem, 16vw, 14rem);
+  line-height: 1; letter-spacing: .04em;
+  color: var(--accent);
+  opacity: .14;
+  margin-bottom: -48px;
+}
+
+.focus-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1; letter-spacing: .03em;
+  color: var(--fg);
+  margin-bottom: 32px;
+}
+
+.bullets { display: flex; flex-direction: column; gap: 24px; max-width: 680px; }
+.bullet {
+  display: flex; gap: 18px; align-items: flex-start;
+  opacity: 0; transform: translateX(-16px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.bullet.show { opacity: 1; transform: translateX(0); }
+
+.bdot {
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--accent); margin-top: 8px; flex-shrink: 0;
+}
+.btext {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 400; line-height: 1.6;
+  color: rgba(26,14,6,.82);
+}
+.btext strong { color: var(--fg); font-weight: 700; }
+.btext em { color: var(--accent2); font-style: normal; font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   SLIDE 6 · EL SWITCH MENTAL
+══════════════════════════════════════════ */
+.s-ejercicio { gap: 18px; }
+
+.switch-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 1; letter-spacing: .03em;
+  text-align: center;
+}
+.switch-title span { color: var(--accent); }
+
+.sit-wrap { width: 100%; max-width: 760px; }
+.sit-card { display: none; flex-direction: column; gap: 16px; }
+.sit-card.on { display: flex; }
+
+.sit-box {
+  background: rgba(26,14,6,.05);
+  border: 1.5px solid rgba(26,14,6,.18);
+  border-radius: 10px; padding: 22px 28px;
+}
+.sit-label {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.75rem, 1.3vw, 1rem); font-weight: 700;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.sit-q {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+  font-weight: 700; line-height: 1.45;
+  color: var(--fg);
+}
+
+.reveal-btn {
+  align-self: center;
+  background: var(--accent); border: none;
+  color: #0C0A08;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  letter-spacing: .12em;
+  padding: 14px 32px; border-radius: 4px; cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+.reveal-btn:hover { background: var(--accent2); }
+.reveal-btn:active { transform: scale(.97); }
+
+.mindsets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.mbox {
+  border-radius: 8px; padding: 18px 20px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.mbox.show { opacity: 1; transform: translateY(0); }
+.mbox.emp { background: rgba(192,32,32,.08); border: 1.5px solid rgba(192,32,32,.35); }
+.mbox.enc { background: rgba(26,122,58,.08); border: 1.5px solid rgba(26,122,58,.35); }
+
+.mlabel {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.78rem, 1.3vw, 1rem); font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  margin-bottom: 9px;
+}
+.emp .mlabel { color: var(--red); }
+.enc .mlabel { color: var(--green); }
+
+.mquote {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.9rem, 1.8vw, 1.3rem);
+  color: rgba(26,14,6,.72); line-height: 1.55;
+  font-weight: 500; font-style: italic;
+}
+
+.sit-footer {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.sit-count {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(.8rem, 1.3vw, 1rem); font-weight: 600;
+  color: var(--muted); letter-spacing: .06em;
+}
+.sit-next-btn {
+  background: var(--accent); border: none;
+  color: #0C0A08;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(.9rem, 1.6vw, 1.2rem);
+  letter-spacing: .14em;
+  padding: 12px 26px; border-radius: 4px; cursor: pointer;
+  transition: background .2s;
+}
+.sit-next-btn:hover { background: var(--accent2); }
+
+/* ══════════════════════════════════════════
+   SLIDE 7 · CIERRE
+══════════════════════════════════════════ */
+.s-cierre {
+  background:
+    linear-gradient(160deg, rgba(232,117,26,.22) 0%, transparent 60%),
+    var(--bg);
+  text-align: center; gap: 0;
+  border-top: 6px solid var(--accent);
+}
+
+.cierre-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 13vw, 12rem);
+  line-height: .9; letter-spacing: .03em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.cierre-h span { color: var(--fg); display: block; }
+
+.cierre-rule { width: 60px; height: 4px; background: var(--accent); margin: 24px auto 26px; }
+
+.cierre-cta {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 600; letter-spacing: .04em;
+  color: var(--muted);
+}
+
+/* ── NAV BAR (desktop) ── */
+.navbar {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px; z-index: 200;
+  background: rgba(12,10,8,.72); backdrop-filter: blur(12px);
+  padding: 10px 20px; border-radius: 50px;
+  border: 1px solid rgba(232,117,26,.28);
+}
+.nav-btn {
+  background: none; border: 1.5px solid rgba(255,255,255,.2);
+  color: #fff; width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: all .2s; line-height: 1;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn:disabled { opacity: .2; cursor: not-allowed; }
+.dots { display: flex; gap: 6px; align-items: center; }
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,.2); cursor: pointer; transition: all .3s;
+}
+.dot.on { background: var(--accent); width: 20px; border-radius: 3px; }
+.slide-num {
+  font-family: 'Barlow', sans-serif;
+  color: rgba(255,255,255,.4); font-size: .8rem; font-weight: 600;
+  letter-spacing: .06em; min-width: 32px; text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE · Vertical scroll  ≤ 768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Allow normal document flow */
+  html, body { overflow: auto; height: auto; }
+  .pres { height: auto; overflow: visible; }
+
+  /* All slides become stacked full-screen sections */
+  .slide {
+    position: relative !important;
+    inset: auto !important;
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    pointer-events: all !important;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 32px 20px 52px;
+    /* Override the bottom padding that was for the desktop navbar */
+  }
+
+  /* Hide desktop navigation bar */
+  .navbar { display: none !important; }
+
+  /* Bullets: all visible, no animation */
+  .bullet {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Mindsets: appear immediately when revealed (no transition) */
+  .mbox {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Focus slides: tighter left border on small screens */
+  .s-focus {
+    border-left: 5px solid var(--accent);
+    padding-left: 22px !important;
+  }
+
+  /* Ghost numbers: smaller */
+  .focus-num {
+    font-size: clamp(3.5rem, 16vw, 6rem);
+    margin-bottom: -18px;
+  }
+
+  /* Focus title */
+  .focus-title {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    margin-bottom: 20px;
+  }
+
+  /* Slide title (Realidad) */
+  .slide-title { font-size: clamp(1.8rem, 7vw, 3rem); }
+
+  /* Switch title */
+  .switch-title { font-size: clamp(2rem, 7.5vw, 3.5rem); }
+
+  /* Portada headline */
+  .portada-h1 { font-size: clamp(4.5rem, 20vw, 8rem); }
+
+  /* Cierre headline */
+  .cierre-h { font-size: clamp(3rem, 12vw, 6rem); }
+
+  /* Bullets: tighter gap */
+  .bullets { gap: 14px; }
+
+  /* Bullet text: slightly smaller */
+  .btext { font-size: clamp(.9rem, 3.5vw, 1.15rem); }
+
+  /* Alert box: full width */
+  .alert-box { max-width: 100%; }
+
+  /* Chart: full width */
+  .chart-wrap { max-width: 100%; }
+
+  /* Mindsets: single column on mobile */
+  .mindsets { grid-template-columns: 1fr; }
+
+  /* Sit wrap: full width */
+  .sit-wrap { max-width: 100%; }
+
+  /* Sit question: smaller */
+  .sit-q { font-size: clamp(1rem, 3.5vw, 1.3rem); }
+
+  /* Sit box: tighter padding */
+  .sit-box { padding: 16px 18px; }
+
+  /* Section label */
+  .slide-eyebrow { font-size: clamp(.8rem, 3vw, 1rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide, .bar-fill, .bullet, .mbox { transition: none; }
+}
+</style>
+
+<div class="pres" id="pres">
+
+  <!-- ══ SLIDE 0 · PORTADA ══ -->
+  <div class="slide s-portada active" data-index="0">
+    <div class="portada-brand">
+      <span class="portada-brand-dc">DC</span>
+      <span class="portada-brand-name">Doma Criolla</span>
+    </div>
+    <p class="portada-pretitle">Reunión de</p>
+    <h1 class="portada-h1"><span>Encargados</span></h1>
+    <div class="portada-rule"></div>
+    <p class="portada-date">Sábado 10 de octubre · 2026</p>
+  </div>
+
+  <!-- ══ SLIDE 1 · LA REALIDAD ══ -->
+  <div class="slide s-realidad" data-index="1">
+    <p class="slide-eyebrow">Lo que dicen los números</p>
+    <h2 class="slide-title">Las ventas vienen <span style="color:var(--red);">cayendo</span></h2>
+    <div class="chart-wrap">
+      <div class="chart-bars" id="chartBars">
+        <div class="bar-col">
+          <div class="bar-stats">
+            <div class="bar-pedidos" style="color:var(--blue);">10.190</div>
+            <div class="bar-products">pedidos</div>
+          </div>
+          <div class="bar-spacer"></div>
+          <div class="bar-fill" id="b0"></div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-stats">
+            <div class="bar-pedidos" style="color:var(--accent);">9.243</div>
+            <div class="bar-products">pedidos</div>
+          </div>
+          <div class="bar-spacer"></div>
+          <div class="bar-fill" id="b1"></div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-stats">
+            <div class="bar-pedidos" style="color:var(--red);">8.170</div>
+            <div class="bar-products">pedidos</div>
+          </div>
+          <div class="bar-spacer"></div>
+          <div class="bar-fill" id="b2"></div>
+        </div>
+      </div>
+      <div class="chart-legend">
+        <span><strong>Julio</strong>104.788 prod.</span>
+        <span><strong>Agosto</strong>92.081 prod.</span>
+        <span><strong>Septiembre</strong>79.038 prod.</span>
+      </div>
+    </div>
+    <div class="alert-box">
+      <strong>−2.020 pedidos menos en 2 meses</strong>
+      <p>Cada encargado tiene un papel clave en revertir esta tendencia.</p>
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 2 · FOCO 1 ══ -->
+  <div class="slide s-focus" data-index="2">
+    <div class="focus-num">01</div>
+    <p class="slide-eyebrow">Primer foco</p>
+    <h2 class="focus-title">Atención al cliente</h2>
+    <ul class="bullets" id="bl2">
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">Recibir con <strong>sonrisa, entusiasmo y buena predisposición</strong>. Esa primera impresión define todo lo que viene después.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">WhatsApp: <strong>respuesta rápida</strong>. El cliente no tiene que preguntar si su pedido fue confirmado.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">Cajita Criolla: globos <strong>siempre inflados</strong> y entrega con energía. Es el detalle que diferencia.</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ SLIDE 3 · FOCO 2 ══ -->
+  <div class="slide s-focus" data-index="3">
+    <div class="focus-num">02</div>
+    <p class="slide-eyebrow">Segundo foco</p>
+    <h2 class="focus-title">Ventas y venta sugestiva</h2>
+    <ul class="bullets" id="bl3">
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">Los encargados generan iniciativas. <strong>No esperan que el cliente entre y compre solo.</strong></p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">Hay que trabajar los <strong>productos por ticket</strong>: que cada pedido sume más de lo que el cliente pensaba llevar.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext"><em>"¿Le sumamos un postre? Tenemos tiramisú y cheesecake, son ideales para cerrar."</em></p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ SLIDE 4 · FOCO 3 ══ -->
+  <div class="slide s-focus" data-index="4">
+    <div class="focus-num">03</div>
+    <p class="slide-eyebrow">Tercer foco</p>
+    <h2 class="focus-title">Stock y recepción</h2>
+    <ul class="bullets" id="bl4">
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">Controlar los pedidos de fábrica <strong>de manera inmediata</strong> al recibirlos. Sin postergarlo.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext"><strong>Registrar en la tablet con exactitud.</strong> Un error modifica directamente lo que producción tiene que elaborar. No hay margen.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext">Ante cualquier devolución a producción: mandar el mensaje <strong>DEVOLUCIÓN</strong> al grupo correspondiente con local, producto, fecha bandeja, motivo, cantidad y <em>foto del lugar donde quedó.</em></p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ SLIDE 5 · NOVEDADES CARTA ══ -->
+  <div class="slide s-focus" data-index="5">
+    <div class="focus-num" style="opacity:.1">★</div>
+    <p class="slide-eyebrow">Esta semana</p>
+    <h2 class="focus-title">Novedades de carta</h2>
+    <ul class="bullets" id="bl5">
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext"><strong>Zapallo y Pollo Asado — últimos días.</strong> Viernes y sábado queda lo último. El domingo ya no hay stock. <em>Vendan todo.</em> Si al cierre queda algo, ofrecerlo como cortesía.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext"><strong>Postre Balcarce Rosa — lanza el domingo 11.</strong> Edición exclusiva de octubre por el mes del cáncer de mama. Venderlo con convicción: es un postre con propósito.</p>
+      </li>
+      <li class="bullet">
+        <div class="bdot"></div>
+        <p class="btext"><strong>Mollejitas al Verdeo — lanza el lunes 12.</strong> Edición limitada: crocantes, demi-glace alimonada, provoleta parrillera. Presentarlas con entusiasmo desde el primer día.</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ SLIDE 6 · EL SWITCH MENTAL ══ -->
+  <div class="slide s-ejercicio" data-index="6">
+    <p class="slide-eyebrow" style="text-align:center;">Actividad grupal</p>
+    <h2 class="switch-title">El <span>Switch</span> Mental 🔄</h2>
+
+    <div class="sit-wrap">
+
+      <!-- SITUACIÓN 1 -->
+      <div class="sit-card on" id="sit0">
+        <div class="sit-box">
+          <p class="sit-label">Situación 1 de 3</p>
+          <p class="sit-q">Las ventas del turno estuvieron bajas. ¿Cómo lo explicarías?</p>
+        </div>
+        <button class="reveal-btn" id="rbtn0" onclick="reveal(0)">VER LOS DOS ENFOQUES ↓</button>
+        <div class="mindsets" id="mind0" hidden>
+          <div class="mbox emp"><p class="mlabel">🔴 Modo empleado</p><p class="mquote">"Estuvo tranquilo, no había gente. No podemos hacer nada."</p></div>
+          <div class="mbox enc"><p class="mlabel">🟢 Modo encargado</p><p class="mquote">"¿Qué hice yo para mover el local? ¿Empujé la venta en cada pedido?"</p></div>
+        </div>
+        <div class="sit-footer">
+          <span class="sit-count">1 / 3</span>
+          <button class="sit-next-btn" id="snxt0" hidden onclick="nextSit(1)">SIGUIENTE →</button>
+        </div>
+      </div>
+
+      <!-- SITUACIÓN 2 -->
+      <div class="sit-card" id="sit1">
+        <div class="sit-box">
+          <p class="sit-label">Situación 2 de 3</p>
+          <p class="sit-q">Hay producto por vencer y nadie lo comunicó. ¿Cuál es tu reacción?</p>
+        </div>
+        <button class="reveal-btn" id="rbtn1" onclick="reveal(1)">VER LOS DOS ENFOQUES ↓</button>
+        <div class="mindsets" id="mind1" hidden>
+          <div class="mbox emp"><p class="mlabel">🔴 Modo empleado</p><p class="mquote">"Nadie me dijo que tenía que controlarlo hoy."</p></div>
+          <div class="mbox enc"><p class="mlabel">🟢 Modo encargado</p><p class="mquote">"Es mi local. Armo una rutina de control para que no vuelva a pasar."</p></div>
+        </div>
+        <div class="sit-footer">
+          <span class="sit-count">2 / 3</span>
+          <button class="sit-next-btn" id="snxt1" hidden onclick="nextSit(2)">SIGUIENTE →</button>
+        </div>
+      </div>
+
+      <!-- SITUACIÓN 3 -->
+      <div class="sit-card" id="sit2">
+        <div class="sit-box">
+          <p class="sit-label">Situación 3 de 3</p>
+          <p class="sit-q">El equipo no está vendiendo bien. ¿Qué hacés?</p>
+        </div>
+        <button class="reveal-btn" id="rbtn2" onclick="reveal(2)">VER LOS DOS ENFOQUES ↓</button>
+        <div class="mindsets" id="mind2" hidden>
+          <div class="mbox emp"><p class="mlabel">🔴 Modo empleado</p><p class="mquote">"Son así, no les importa. No hay nada que pueda hacer."</p></div>
+          <div class="mbox enc"><p class="mlabel">🟢 Modo encargado</p><p class="mquote">"¿Qué hago YO para motivarlos y darles las herramientas para vender?"</p></div>
+        </div>
+        <div class="sit-footer">
+          <span class="sit-count">3 / 3</span>
+          <button class="sit-next-btn" id="snxt2" hidden onclick="goTo(7)">VER CIERRE →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SLIDE 7 · CIERRE ══ -->
+  <div class="slide s-cierre" data-index="7">
+    <h2 class="cierre-h">La diferencia<br>la hacemos<br><span>nosotros</span></h2>
+    <div class="cierre-rule"></div>
+    <p class="cierre-cta">Este mes, ¿en qué modo venís a trabajar?</p>
+  </div>
+
+</div><!-- /pres -->
+
+<!-- ── NAV BAR (desktop only) ── -->
+<nav class="navbar">
+  <button class="nav-btn" id="prevBtn" onclick="goTo(cur-1)" disabled>&#8592;</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="goTo(cur+1)">&#8594;</button>
+  <span class="slide-num" id="slideNum">1/8</span>
+</nav>
+
+<script>
+const TOTAL = 8;
+let cur = 0;
+
+// ── Build nav dots ──
+const dotsEl = document.getElementById('dots');
+for (let i = 0; i < TOTAL; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' on' : '');
+  d.setAttribute('aria-label', `Slide ${i + 1}`);
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function updateNav() {
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').disabled = cur === TOTAL - 1;
+  document.getElementById('slideNum').textContent = `${cur + 1}/${TOTAL}`;
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === cur));
+}
+
+// ── DESKTOP: slide navigation ──
+function goTo(n) {
+  if (isMobile()) return; // no-op on mobile (user scrolls)
+  if (n < 0 || n >= TOTAL) return;
+  const slides = document.querySelectorAll('.slide');
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('leaving');
+  const old = cur;
+  setTimeout(() => slides[old].classList.remove('leaving'), 420);
+  cur = n;
+  slides[cur].classList.add('active');
+  updateNav();
+  onEnter(cur);
+}
+
+function onEnter(n) {
+  if (n === 1) {
+    setTimeout(() => {
+      document.querySelectorAll('.bar-fill').forEach(b => b.classList.add('grow'));
+    }, 80);
+  }
+  if (n === 2 || n === 3 || n === 4 || n === 5) {
+    document.querySelectorAll(`#bl${n} .bullet`).forEach((b, i) => {
+      setTimeout(() => b.classList.add('show'), 120 + i * 200);
+    });
+  }
+}
+
+// ── Switch Mental interactions (desktop + mobile) ──
+function reveal(idx) {
+  document.getElementById('mind' + idx).hidden = false;
+  document.getElementById('rbtn' + idx).style.display = 'none';
+  document.getElementById('snxt' + idx).hidden = false;
+  if (!isMobile()) {
+    // Desktop: animate in
+    setTimeout(() => {
+      document.getElementById('mind' + idx).querySelectorAll('.mbox').forEach((b, i) => {
+        setTimeout(() => b.classList.add('show'), i * 180);
+      });
+    }, 40);
+  }
+}
+
+function nextSit(idx) {
+  document.getElementById('sit' + (idx - 1)).classList.remove('on');
+  document.getElementById('sit' + idx).classList.add('on');
+}
+
+// ── Keyboard nav (desktop) ──
+document.addEventListener('keydown', e => {
+  if (isMobile()) return;
+  if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); goTo(cur + 1); }
+  if (['ArrowLeft','ArrowUp'].includes(e.key))         { e.preventDefault(); goTo(cur - 1); }
+});
+
+// ── MOBILE: helpers ──
+function isMobile() { return window.innerWidth <= 768; }
+
+// Scroll-triggered bar chart on mobile
+function initMobileChart() {
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: grow bars immediately
+    document.querySelectorAll('.bar-fill').forEach(b => b.classList.add('grow'));
+    return;
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          document.querySelectorAll('.bar-fill').forEach(b => b.classList.add('grow'));
+        }, 200);
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.35 });
+  const chart = document.getElementById('chartBars');
+  if (chart) obs.observe(chart);
+}
+
+// ── Init ──
+if (isMobile()) {
+  initMobileChart();
+} else {
+  updateNav();
+}
+</script>
+
+</body></html>
